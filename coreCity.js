@@ -76,7 +76,7 @@ for (let i = 0; i < coreTowns.length; ++i) {
   }
 }
 
-fs.writeFile('./coreCity.json', JSON.stringify(coreTowns), 'utf8', function(
+fs.writeFile('./json/coreCity.json', JSON.stringify(coreTowns), 'utf8', function(
   err
 ) {
   if (err) {

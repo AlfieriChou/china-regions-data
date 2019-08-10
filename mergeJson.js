@@ -42,7 +42,7 @@ for (let i = 0; i < regions.length; ++i) {
   }
 }
 
-fs.writeFile('./towns.json', JSON.stringify(regions), 'utf8', function(err) {
+fs.writeFile('./json/towns.json', JSON.stringify(regions), 'utf8', function(err) {
   if (err) {
     return console.log(err)
   }
