@@ -1,4 +1,4 @@
-const regions = require("./towns.json");
+const regions = require("./json/towns.json");
 const _ = require("lodash");
 const fs = require("fs");
 
