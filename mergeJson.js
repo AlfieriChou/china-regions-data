@@ -18,7 +18,10 @@ for (let i = 0; i < regions.length; ++i) {
               if (cityCode === districts[k].code) {
                 districts[k].towns.push({
                   code: parseInt(index.slice(0, 9)),
-                  name: town[index].name.replace(/街道办事处|办事处|街道/gi, "")
+                  name: town[index].name.replace(
+                    /街道办事处|办事处|街道|地区/gi,
+                    ""
+                  )
                 });
               }
             }
