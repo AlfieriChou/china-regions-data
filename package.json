@@ -2,8 +2,8 @@
   "name": "china-regions-data",
   "version": "1.0.0",
   "description": "city data.",
-  "script": {
-    "format": "prettier --write \"**/*.{ts,js}\""
+  "scripts": {
+    "format": "prettier --write \"**/*.{ts,js,json}\""
   },
   "main": "index.js",
   "author": "AlfieriChou",

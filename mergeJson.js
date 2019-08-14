@@ -1,50 +1,53 @@
-const regions = require('./regions.json')
-const town = require('./town.json')
-const fs = require('fs')
+const regions = require("./json/regions.json");
+const town = require("./json/town.json");
+const fs = require("fs");
 
 for (let i = 0; i < regions.length; ++i) {
   if (regions[i].cities) {
-    let cities = regions[i].cities
+    let cities = regions[i].cities;
     if (cities) {
       for (let j = 0; j < cities.length; ++j) {
         if (cities[j].districts) {
-          let districts = cities[j].districts
+          let districts = cities[j].districts;
           for (let k = 0; k < districts.length; ++k) {
             if (!districts[k].towns) {
-              districts[k].towns = []
+              districts[k].towns = [];
             }
             for (let index in town) {
-              if (town[index].city === districts[k].name) {
+              let cityCode = town[index].id.slice(0, 6);
+              if (cityCode === districts[k].code) {
                 districts[k].towns.push({
                   code: parseInt(index.slice(0, 9)),
-                  name: town[index].name.replace(/街道办事处|办事处|街道/gi, '')
-                })
+                  name: town[index].name.replace(/街道办事处|办事处|街道/gi, "")
+                });
               }
             }
-            console.log('---->', districts[k])
+            console.log("---->", districts[k]);
           }
         } else {
           if (!cities[j].towns) {
-            cities[j].towns = []
+            cities[j].towns = [];
           }
           for (let index in town) {
             if (town[index].city === cities[j].name) {
               cities[j].towns.push({
                 code: parseInt(index.slice(0, 9)),
-                name: town[index].name.replace(/街道办事处/i, '')
-              })
+                name: town[index].name.replace(/街道办事处/i, "")
+              });
             }
           }
-          console.log('---city-->', cities[j])
+          console.log("---city-->", cities[j]);
         }
       }
     }
   }
 }
 
-fs.writeFile('./json/towns.json', JSON.stringify(regions), 'utf8', function(err) {
+fs.writeFile("./json/towns.json", JSON.stringify(regions), "utf8", function(
+  err
+) {
   if (err) {
-    return console.log(err)
+    return console.log(err);
   }
-  console.log('The file was saved!')
-})
+  console.log("The file was saved!");
+});
